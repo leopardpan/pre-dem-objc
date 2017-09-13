@@ -32,7 +32,7 @@
  */
 @property(nonatomic, strong) NSDictionary<NSString *, id> *_Nullable data;
 
-- (instancetype _Nullable)initWithCategory:(NSString *)category
+- (instancetype _Nullable)initWithCategory:(NSString *_Nonnull)category
                                       Type:(NSString *_Nullable)type
                                    message:(NSString *_Nullable)message
                                       data:(NSDictionary<NSString *, id> *_Nullable)data;
