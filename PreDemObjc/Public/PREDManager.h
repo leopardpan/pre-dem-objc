@@ -38,6 +38,8 @@
 + (void)diagnose:(NSString *_Nonnull)host
         complete:(PREDNetDiagCompleteHandler _Nullable)complete;
 
++ (void)addBreadScrumb:(PREDBreadcrumb *)breadscrumb;
+
 + (void)trackEventWithName:(NSString *_Nonnull)eventName
                      event:(NSDictionary *_Nonnull)event;
 

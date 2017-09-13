@@ -13,11 +13,13 @@
 @implementation PREDBreadcrumbTracker {
     PREDNetworkClient *_networkClient;
     NSMutableArray<PREDBreadcrumb *> *_breadcrumbs;
+    NSRecursiveLock *_lock;
 }
 
 - (instancetype)initWithNetworkClient:(PREDNetworkClient *)networkClient {
     if (self = [super init]) {
         _networkClient = networkClient;
+        _lock = [NSRecursiveLock new];
     }
     return self;
 }
@@ -26,6 +28,12 @@
     [self addEnabledCrumb];
     [self swizzleSendAction];
     [self swizzleViewDidAppear];
+}
+
+- (void)addBreadScrumb:(PREDBreadcrumb *)breadscrumb {
+    [_lock lock];
+    [_breadcrumbs addObject:breadscrumb];
+    [_lock unlock];
 }
 
 - (void)addEnabledCrumb {
@@ -57,7 +65,9 @@
                                       Type:@"user"
                                       message:[NSString stringWithFormat:@"%s", sel_getName(action)]
                                       data:data];
+        [_lock lock];
         [_breadcrumbs addObject:breadcrumb];
+        [_lock unlock];
         return PREDSWCallOriginal(action, target, sender, event);
     }), PREDSwizzleModeOncePerClassAndSuperclasses, swizzleSendActionKey);
 }
@@ -79,7 +89,9 @@
                                       data:@{
                                              @"controller": [NSString stringWithFormat:@"%@", self]
                                              }];
+        [_lock lock];
         [_breadcrumbs addObject:breadcrumb];
+        [_lock unlock];
         PREDSWCallOriginal(animated);
     }), PREDSwizzleModeOncePerClassAndSuperclasses, swizzleViewDidAppearKey);
 }

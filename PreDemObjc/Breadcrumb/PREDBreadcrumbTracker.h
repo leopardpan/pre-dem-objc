@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "PREDNetworkClient.h"
+#import "PREDBreadcrumb.h"
 
 @interface PREDBreadcrumbTracker : NSObject
 
 - (instancetype)initWithNetworkClient:(PREDNetworkClient *)networkClient;
 - (void)start;
+- (void)addBreadScrumb:(PREDBreadcrumb *)breadscrumb;
 
 @end
