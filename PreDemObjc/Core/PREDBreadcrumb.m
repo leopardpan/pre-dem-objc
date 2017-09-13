@@ -1,5 +1,5 @@
 //
-//  SentryBreadcrumb.m
+//  PREDBreadcrumb.m
 //  Pods
 //
 //  Created by 王思宇 on 13/09/2017.
@@ -19,12 +19,14 @@
 
 @implementation PREDBreadcrumb
 
-- (instancetype)initWithType:(NSString *)type
-                     message:(NSString *)message
-                        data:(NSDictionary<NSString *, id> *)data {
+- (instancetype)initWithCategory:(NSString *)category
+                            Type:(NSString *)type
+                         message:(NSString *)message
+                            data:(NSDictionary<NSString *, id> *)data; {
     if (self = [self init]) {
-        _type = type?:_type;
-        _message = message?:_message;
+        _category = category;
+        _type = type;
+        _message = message;
         _data = data;
     }
     return self;

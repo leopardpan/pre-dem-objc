@@ -1,5 +1,5 @@
 //
-//  SentryBreadcrumb.h
+//  PREDBreadcrumb.h
 //  Pods
 //
 //  Created by 王思宇 on 13/09/2017.
@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface PREDBreadcrumb : NSObject
+
+/**
+ * Category of bookmark, can be any string
+ */
+@property(nonatomic, copy) NSString *_Nonnull category;
+
 
 /**
  * Type of breadcrumb, can be e.g.: http, empty, user, navigation
@@ -26,8 +32,9 @@
  */
 @property(nonatomic, strong) NSDictionary<NSString *, id> *_Nullable data;
 
-- (instancetype _Nullable)initWithType:(NSString *_Nullable)type
-                               message:(NSString *_Nullable)message
-                                  data:(NSDictionary<NSString *, id> *_Nullable)data;
+- (instancetype _Nullable)initWithCategory:(NSString *)category
+                                      Type:(NSString *_Nullable)type
+                                   message:(NSString *_Nullable)message
+                                      data:(NSDictionary<NSString *, id> *_Nullable)data;
 
 @end
