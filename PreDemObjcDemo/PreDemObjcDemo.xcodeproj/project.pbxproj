@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D6325214C0E86343DF94394 /* Pods_PreDemObjcDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A859EBAEE1B8334F33CCC2 /* Pods_PreDemObjcDemo.framework */; };
 		5BC9043C8931AC56B90A9258 /* Pods_PreDemSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9DE848F18E85B4D07C40CD /* Pods_PreDemSwiftDemo.framework */; };
 		B60231491EC9B7AC005AB798 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B60231481EC9B7AC005AB798 /* main.m */; };
 		B602314C1EC9B7AC005AB798 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B602314B1EC9B7AC005AB798 /* AppDelegate.m */; };
@@ -23,7 +24,6 @@
 		B6D9B0641F5E419E001D893E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D9B0621F5E419E001D893E /* Main.storyboard */; };
 		B6D9B0661F5E419E001D893E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6D9B0651F5E419E001D893E /* Assets.xcassets */; };
 		B6D9B0691F5E419E001D893E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6D9B0671F5E419E001D893E /* LaunchScreen.storyboard */; };
-		BA757918E65B8FC141378954 /* Pods_PreDemObjcDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6504F08203DC0F061B69C3 /* Pods_PreDemObjcDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		5627CA5A610BBE9856BD0D35 /* Pods-PreDemSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreDemSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PreDemSwiftDemo/Pods-PreDemSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
-		9E6504F08203DC0F061B69C3 /* Pods_PreDemObjcDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PreDemObjcDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64A859EBAEE1B8334F33CCC2 /* Pods_PreDemObjcDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PreDemObjcDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60231441EC9B7AC005AB798 /* PreDemObjcDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreDemObjcDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60231481EC9B7AC005AB798 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B602314A1EC9B7AC005AB798 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA757918E65B8FC141378954 /* Pods_PreDemObjcDemo.framework in Frameworks */,
+				0D6325214C0E86343DF94394 /* Pods_PreDemObjcDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				EA9DE848F18E85B4D07C40CD /* Pods_PreDemSwiftDemo.framework */,
-				9E6504F08203DC0F061B69C3 /* Pods_PreDemObjcDemo.framework */,
+				64A859EBAEE1B8334F33CCC2 /* Pods_PreDemObjcDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -31,8 +31,17 @@ NSURLSessionDataDelegate
 
 @synthesize HTTPMonitorModel;
 
+<<<<<<< HEAD
 + (void)setPersistence:(PREDPersistence *)persistence {
     _persistence = persistence;
+=======
++ (void)setNetworkClient:(PREDNetworkClient *)client {
+    PREDHTTPMonitorSender.networkClient = client;
+}
+
++ (PREDNetworkClient *)networkClient {
+    return PREDHTTPMonitorSender.networkClient;
+>>>>>>> add breadscrumb
 }
 
 + (void)enableHTTPMonitor {

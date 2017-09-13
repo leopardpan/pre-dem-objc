@@ -11,7 +11,11 @@
 
 @interface PREDURLProtocol : NSURLProtocol
 
+<<<<<<< HEAD
 + (void)setPersistence:(PREDPersistence *)persistence;
+=======
+@property (class, nonatomic, strong) PREDNetworkClient *networkClient;
+>>>>>>> add breadscrumb
 
 + (void)enableHTTPMonitor;
 + (void)disableHTTMonitor;

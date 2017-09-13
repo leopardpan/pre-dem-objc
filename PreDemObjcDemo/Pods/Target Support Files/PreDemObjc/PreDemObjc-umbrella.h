@@ -11,6 +11,7 @@
 #endif
 
 #import "PREDBaseModel.h"
+#import "PREDBreadcrumb.h"
 #import "PREDDefines.h"
 #import "PREDemObjc.h"
 #import "PREDLogger.h"

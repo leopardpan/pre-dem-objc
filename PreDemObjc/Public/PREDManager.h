@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PREDDefines.h"
+#import "PREDBreadcrumb.h"
 
 @interface PREDManager: NSObject
 
