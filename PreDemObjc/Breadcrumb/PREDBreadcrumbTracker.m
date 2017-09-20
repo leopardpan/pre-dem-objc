@@ -11,14 +11,14 @@
 #import "PREDBreadcrumb.h"
 
 @implementation PREDBreadcrumbTracker {
-    PREDNetworkClient *_networkClient;
+    PREDPersistence *_persistence;
     NSMutableArray<PREDBreadcrumb *> *_breadcrumbs;
     NSRecursiveLock *_lock;
 }
 
-- (instancetype)initWithNetworkClient:(PREDNetworkClient *)networkClient {
+- (instancetype)initWithPersistence:(PREDPersistence *)persistence {
     if (self = [super init]) {
-        _networkClient = networkClient;
+        _persistence = persistence;
         _lock = [NSRecursiveLock new];
     }
     return self;

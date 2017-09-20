@@ -171,6 +171,7 @@ static NSString* app_id(NSString* appKey){
     [PREDURLProtocol setPersistence:_persistence];
     _configManager = [[PREDConfigManager alloc] initWithPersistence:_persistence];
     _lagManager = [[PREDLagMonitorController alloc] initWithPersistence:_persistence];
+    _breadcrumbTracker = [[PREDBreadcrumbTracker alloc] initWithPersistence:_persistence];
     [PREDLogger setPersistence:_persistence];
 }
 
@@ -207,14 +208,15 @@ static NSString* app_id(NSString* appKey){
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configRefreshed:) name:kPREDConfigRefreshedNotification object:nil];
 =======
     
-<<<<<<< HEAD
-    [_sender sendAllSavedData];
-=======
     PREDLogDebug(@"Starting BreadcrumbTracker");
-    
     [_breadcrumbTracker start];
+<<<<<<< HEAD
 >>>>>>> add breadscrumb
 >>>>>>> add breadscrumb
+=======
+    
+    [_sender sendAllSavedData];
+>>>>>>> compatibility
 }
 
 - (void)setEnableCrashManager:(BOOL)enableCrashManager {
@@ -252,59 +254,6 @@ static NSString* app_id(NSString* appKey){
         [_lagManager endMonitor];
     }
 }
-
-<<<<<<< HEAD
-=======
-- (void)initNetworkClientWithDomain:(NSString *)aServerURL appKey:(NSString *)appKey error:(NSError **)error {
-    if (!aServerURL.length) {
-        if (error) {
-            *error = [PREDError GenerateNSError:kPREDErrorCodeInvalidServiceDomain description:@"you must specify server domain"];
-        }
-        return;
-    }
-    if (appKey.length < PREDAppIdLength) {
-        if (error) {
-            *error = [PREDError GenerateNSError:kPREDErrorCodeInvalidAppKey description:@"the length of your app key must be longer than %d", PREDAppIdLength];
-        }
-        return;
-    }
-    if (![aServerURL hasPrefix:@"http://"] && ![aServerURL hasPrefix:@"https://"]) {
-        aServerURL = [NSString stringWithFormat:@"http://%@", aServerURL];
-    }
-    
-    aServerURL = [NSString stringWithFormat:@"%@/v1/%@/", aServerURL, app_id(appKey)];
-    
-    _networkClient = [[PREDNetworkClient alloc] initWithBaseURL:[NSURL URLWithString:aServerURL]];
-}
-
-- (void)initializeModules {
-    if (_managersInitialized) {
-        PREDLogWarn(@"The SDK should only be initialized once! This call is ignored.");
-        return;
-    }
-    
-    _startManagerIsInvoked = NO;
-    
-    _crashManager = [[PREDCrashManager alloc]
-                     initWithNetworkClient:_networkClient];
-    PREDURLProtocol.networkClient = _networkClient;
-    _lagManager = [[PREDLagMonitorController alloc] initWithNetworkClient:_networkClient];
-    PREDLogger.networkClient = _networkClient;
-    _breadcrumbTracker = [[PREDBreadcrumbTracker alloc] initWithNetworkClient:_networkClient];
-    
-    _configManager = [[PREDConfigManager alloc] initWithNetClient:_networkClient];
-    _configManager.delegate = self;
-    _managersInitialized = YES;
-}
-
-- (void)applyConfig:(PREDConfig *)config {
-    self.enableCrashManager = config.crashReportEnabled;
-    self.enableHttpMonitor = config.httpMonitorEnabled;
-    self.enableLagMonitor = config.lagMonitorEnabled;
-    _crashManager.enableOnDeviceSymbolication = config.onDeviceSymbolicationEnabled;
-}
-
->>>>>>> add breadscrumb
 - (void)diagnose:(NSString *)host
         complete:(PREDNetDiagCompleteHandler)complete {
     [PREDNetDiag diagnose:host persistence:_persistence complete:complete];
