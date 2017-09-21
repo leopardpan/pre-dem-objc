@@ -61,8 +61,8 @@ static NSString* app_id(NSString* appKey){
     [[self sharedPREDManager] diagnose:host complete:complete];
 }
 
-+ (void)addBreadScrumb:(PREDBreadcrumb *)breadscrumb {
-    [[self sharedPREDManager]->_breadcrumbTracker addBreadScrumb:breadscrumb];
++ (void)addBreadcrumb:(PREDBreadcrumb *)breadcrumb {
+    [[self sharedPREDManager]->_breadcrumbTracker addBreadcrumb:breadcrumb];
 }
 
 + (void)trackEventWithName:(NSString *)eventName

@@ -14,6 +14,6 @@
 
 - (instancetype)initWithPersistence:(PREDPersistence *)persistence;
 - (void)start;
-- (void)addBreadScrumb:(PREDBreadcrumb *)breadscrumb;
+- (void)addBreadcrumb:(PREDBreadcrumb *)breadscrumb;
 
 @end

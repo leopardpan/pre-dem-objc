@@ -12,14 +12,11 @@
 
 @implementation PREDBreadcrumbTracker {
     PREDPersistence *_persistence;
-    NSMutableArray<PREDBreadcrumb *> *_breadcrumbs;
-    NSRecursiveLock *_lock;
 }
 
 - (instancetype)initWithPersistence:(PREDPersistence *)persistence {
     if (self = [super init]) {
         _persistence = persistence;
-        _lock = [NSRecursiveLock new];
     }
     return self;
 }
@@ -30,10 +27,8 @@
     [self swizzleViewDidAppear];
 }
 
-- (void)addBreadScrumb:(PREDBreadcrumb *)breadscrumb {
-    [_lock lock];
-    [_breadcrumbs addObject:breadscrumb];
-    [_lock unlock];
+- (void)addBreadcrumb:(PREDBreadcrumb *)breadcrumb {
+    [_persistence persistBreadcrumb:breadcrumb];
 }
 
 - (void)addEnabledCrumb {
@@ -42,7 +37,7 @@
                                   Type:@"debug"
                                   message:@"Breadcrumb Tracking"
                                   data:nil];
-    [_breadcrumbs addObject:breadcrumb];
+    [_persistence persistBreadcrumb:breadcrumb];
 }
 
 - (void)swizzleSendAction {
@@ -65,9 +60,7 @@
                                       Type:@"user"
                                       message:[NSString stringWithFormat:@"%s", sel_getName(action)]
                                       data:data];
-        [_lock lock];
-        [_breadcrumbs addObject:breadcrumb];
-        [_lock unlock];
+        [_persistence persistBreadcrumb:breadcrumb];
         return PREDSWCallOriginal(action, target, sender, event);
     }), PREDSwizzleModeOncePerClassAndSuperclasses, swizzleSendActionKey);
 }
@@ -89,9 +82,7 @@
                                       data:@{
                                              @"controller": [NSString stringWithFormat:@"%@", self]
                                              }];
-        [_lock lock];
-        [_breadcrumbs addObject:breadcrumb];
-        [_lock unlock];
+        [_persistence persistBreadcrumb:breadcrumb];
         PREDSWCallOriginal(animated);
     }), PREDSwizzleModeOncePerClassAndSuperclasses, swizzleViewDidAppearKey);
 }

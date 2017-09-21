@@ -21,6 +21,7 @@
     NSString *_httpDir;
     NSString *_netDir;
     NSString *_customDir;
+    NSString *_breadcrumbDir;
     NSFileManager *_fileManager;
 }
 
@@ -34,6 +35,7 @@
         _httpDir = [NSString stringWithFormat:@"%@/%@", PREDHelper.cacheDirectory, @"http"];
         _netDir = [NSString stringWithFormat:@"%@/%@", PREDHelper.cacheDirectory, @"net"];
         _customDir = [NSString stringWithFormat:@"%@/%@", PREDHelper.cacheDirectory, @"custom"];
+        _breadcrumbDir = [NSString stringWithFormat:@"%@/%@", PREDHelper.cacheDirectory, @"breadcrumb"];
 
         NSError *error;
         [_fileManager createDirectoryAtPath:_appInfoDir withIntermediateDirectories:YES attributes:nil error:&error];
@@ -63,6 +65,10 @@
         [_fileManager createDirectoryAtPath:_customDir withIntermediateDirectories:YES attributes:nil error:&error];
         if (error) {
             PREDLogError(@"create dir %@ failed", _customDir);
+        }
+        [_fileManager createDirectoryAtPath:_breadcrumbDir withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            PREDLogError(@"create dir %@ failed", _breadcrumbDir);
         }
         PREDLogVerbose(@"cache directory:\n%@", PREDHelper.cacheDirectory);
     }
@@ -160,6 +166,19 @@
     }
 }
 
+- (void)persistBreadcrumb:(PREDBreadcrumb *)breadcrumb {
+    NSError *error;
+    NSData *toSave = [breadcrumb toJsonWithError:&error];
+    if (error) {
+        PREDLogError(@"jsonize net diag result error: %@", error);
+    }
+    NSString *fileName = [NSString stringWithFormat:@"%f-%u", [[NSDate date] timeIntervalSince1970], arc4random()];
+    BOOL success = [toSave writeToFile:[NSString stringWithFormat:@"%@/%@", _netDir, fileName] atomically:NO];
+    if (!success) {
+        PREDLogError(@"write net diag to file %@ failed", fileName);
+    }
+}
+
 - (NSString *)nextAppInfoPath {
     NSArray *files = [_fileManager enumeratorAtPath:_appInfoDir].allObjects;
     if (files.count == 0) {
@@ -230,6 +249,15 @@
         return nil;
     } else {
         return [NSString stringWithFormat:@"%@/%@", _customDir, files[0]];
+    }
+}
+
+- (NSString *)nextBreadcrumbPath {
+    NSArray *files = [_fileManager enumeratorAtPath:_breadcrumbDir].allObjects;
+    if (files.count == 0) {
+        return nil;
+    } else {
+        return [NSString stringWithFormat:@"%@/%@", _breadcrumbDir, files[0]];
     }
 }
 

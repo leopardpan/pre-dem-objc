@@ -13,6 +13,7 @@
 #import "PREDHTTPMonitorModel.h"
 #import "PREDNetDiagResult.h"
 #import "PREDAppInfo.h"
+#import "PREDBreadcrumb.h"
 
 @interface PREDPersistence : NSObject
 
@@ -23,6 +24,7 @@
 - (void)persistHttpMonitor:(PREDHTTPMonitorModel *)httpMonitor;
 - (void)persistNetDiagResult:(PREDNetDiagResult *)netDiagResult;
 - (void)persistCustomEventWithName:(NSString *)eventName events:(NSArray<NSDictionary<NSString *, NSString *> *>*)events;
+- (void)persistBreadcrumb:(PREDBreadcrumb *)breadcrumb;
 
 - (NSString *)nextAppInfoPath;
 - (NSString *)nextCrashMetaPath;
@@ -32,6 +34,7 @@
 - (NSArray *)allHttpMonitorPaths;
 - (NSString *)nextNetDiagPath;
 - (NSString *)nextCustomEventsPath;
+- (NSString *)nextBreadcrumbPath;
 
 - (NSMutableDictionary *)getStoredMeta:(NSString *)filePath error:(NSError **)error;
 - (void)purgeFile:(NSString *)filePath;

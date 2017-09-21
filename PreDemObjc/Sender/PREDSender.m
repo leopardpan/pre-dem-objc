@@ -39,6 +39,7 @@
     [self sendLogData];
     [self sendHttpMonitor];
     [self sendNetDiag];
+    [self sendBreadcrumb];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(PREDSendInterval * NSEC_PER_SEC)), dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT), ^{
         [self sendAllSavedData];
     });
@@ -331,6 +332,29 @@
             [strongSelf sendCustomEvents];
         } else {
             PREDLogError(@"send custom events error: %@", error);
+        }
+    }];
+}
+
+- (void)sendBreadcrumb {
+    NSString *filePath = [_persistence nextBreadcrumbPath];
+    if (!filePath) {
+        return;
+    }
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    if (!data) {
+        PREDLogError(@"get stored data %@ error", filePath);
+        return;
+    }
+    __weak typeof(self) wSelf = self;
+    [_networkClient postPath:@"breadcrumb/i" data:data headers:@{@"Content-Type": @"application/json"} completion:^(PREDHTTPOperation *operation, NSData *data, NSError *error) {
+        __strong typeof(wSelf) strongSelf = wSelf;
+        if (!error) {
+            PREDLogDebug(@"Send breadcrumb succeeded");
+            [strongSelf->_persistence purgeFile:filePath];
+            [strongSelf sendBreadcrumb];
+        } else {
+            PREDLogError(@"send breadcrumb error: %@", error);
         }
     }];
 }
