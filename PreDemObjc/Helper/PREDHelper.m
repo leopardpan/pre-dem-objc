@@ -273,7 +273,7 @@ __strong static NSString *_tag = @"";
     return platform;
 }
 
-+ (NSString *)breadcrumbSessionId {
++ (NSString *)sessionId {
     static NSString *sessionId;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

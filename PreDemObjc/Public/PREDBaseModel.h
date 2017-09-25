@@ -10,6 +10,10 @@
 
 @interface PREDBaseModel : NSObject
 
+/**
+ * SessionId identify a single run of the application, it will change when the application is restarted
+ */
+@property (nonatomic, strong) NSString *session_id;
 @property (nonatomic, strong) NSString *app_bundle_id;
 @property (nonatomic, strong) NSString *app_name;
 @property (nonatomic, strong) NSString *app_version;

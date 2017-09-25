@@ -13,6 +13,7 @@
 
 - (instancetype)init {
     if ([super init]) {
+        _session_id = PREDHelper.sessionId;
         _app_bundle_id = PREDHelper.appBundleId;
         _app_name = PREDHelper.appName;
         _app_version = PREDHelper.appVersion;
@@ -24,6 +25,7 @@
         _sdk_id = PREDHelper.UUID;
         _tag = PREDHelper.tag;
         _manufacturer = @"Apple";
+        
     }
     return self;
 }

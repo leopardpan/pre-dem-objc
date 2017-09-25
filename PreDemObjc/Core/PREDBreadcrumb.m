@@ -9,15 +9,6 @@
 #import "PREDBreadcrumb.h"
 #import "PREDHelper.h"
 
-@interface PREDBreadcrumb ()
-
-/**
- * NSDate when the breadcrumb happened
- */
-@property(nonatomic, strong) NSDate *timestamp;
-
-@end
-
 @implementation PREDBreadcrumb
 
 - (instancetype)initWithCategory:(NSString *)category
@@ -35,8 +26,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _timestamp = [NSDate date];
-        _sessionId = PREDHelper.breadcrumbSessionId;
+        _timestamp = [NSDate date].timeIntervalSince1970;
     }
     return self;
 }

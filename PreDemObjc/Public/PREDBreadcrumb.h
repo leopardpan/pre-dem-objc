@@ -7,13 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PREDBaseModel.h"
 
-@interface PREDBreadcrumb : NSObject
-
-/**
- * SessionId identify a single run of the application, it will change when the application is restarted
- */
-@property(nonatomic, strong, nonnull, readonly) NSString *sessionId;
+@interface PREDBreadcrumb : PREDBaseModel
 
 /**
  * Category of bookmark, can be any string
@@ -31,6 +27,11 @@
  * Message for the breadcrumb
  */
 @property(nonatomic, copy, nullable) NSString *message;
+
+/**
+ * NSDate when the breadcrumb happened
+ */
+@property(nonatomic, assign, readonly) uint64_t timestamp;
 
 /**
  * Arbitrary additional data that will be sent with the breadcrumb
