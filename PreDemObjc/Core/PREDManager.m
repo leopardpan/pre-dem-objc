@@ -201,22 +201,13 @@ static NSString* app_id(NSString* appKey){
         
         [_lagManager startMonitor];
     }
-<<<<<<< HEAD
+    
+    PREDLogDebug(@"Starting BreadcrumbTracker");
+    [_breadcrumbTracker start];
 }
 
 - (void)registerObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configRefreshed:) name:kPREDConfigRefreshedNotification object:nil];
-=======
-    
-    PREDLogDebug(@"Starting BreadcrumbTracker");
-    [_breadcrumbTracker start];
-<<<<<<< HEAD
->>>>>>> add breadscrumb
->>>>>>> add breadscrumb
-=======
-    
-    [_sender sendAllSavedData];
->>>>>>> compatibility
 }
 
 - (void)setEnableCrashManager:(BOOL)enableCrashManager {
