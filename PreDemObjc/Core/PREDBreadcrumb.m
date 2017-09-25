@@ -7,6 +7,7 @@
 //
 
 #import "PREDBreadcrumb.h"
+#import "PREDHelper.h"
 
 @interface PREDBreadcrumb ()
 
@@ -35,6 +36,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         _timestamp = [NSDate date];
+        _sessionId = PREDHelper.breadcrumbSessionId;
     }
     return self;
 }

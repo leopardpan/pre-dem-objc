@@ -11,6 +11,7 @@
 
 @interface PREDCrashMeta : PREDBaseModel
 
+@property (nonatomic, strong) NSString *breadcrumb_sessionid;
 @property (nonatomic, strong) NSString *report_uuid;
 @property (nonatomic, strong) NSString *crash_log_key;
 @property (nonatomic, assign) uint64_t start_time;

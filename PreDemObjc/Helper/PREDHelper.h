@@ -34,7 +34,7 @@
 @property(class, readonly) NSString *osVersion;
 @property(class, readonly) NSString *osBuild;
 @property(class, readonly) NSString *deviceModel;
-
+@property(class, readonly) NSString *breadcrumbSessionId;
 
 @property(class, strong) NSString *tag;
 @property(class, readonly) NSString *sdkDirectory;

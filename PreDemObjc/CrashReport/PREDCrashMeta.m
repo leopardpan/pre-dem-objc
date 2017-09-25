@@ -31,6 +31,7 @@
                 _start_time = [report.processInfo.processStartTime timeIntervalSince1970] * PREDMillisecondPerSecond;
             }
         }
+        _breadcrumb_sessionid = PREDHelper.breadcrumbSessionId;
     }
     return self;
 }

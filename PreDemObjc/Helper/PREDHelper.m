@@ -273,6 +273,15 @@ __strong static NSString *_tag = @"";
     return platform;
 }
 
++ (NSString *)breadcrumbSessionId {
+    static NSString *sessionId;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sessionId = [[NSUUID UUID] UUIDString];
+    });
+    return sessionId;
+}
+
 + (NSString *)executableUUID {
     const struct mach_header *executableHeader = NULL;
     for (uint32_t i = 0; i < _dyld_image_count(); i++) {
